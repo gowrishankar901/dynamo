@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+        <variable
+            name = "viewModel"
+            type = "com.dynamo.spacex.SpaceXViewModel"/>
+        <variable
+            name = "listViewModel"
+            type = "com.dynamo.spacex.SpaceXListViewModel"/>
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+        android:onClick="@{() -> listViewModel.onSpaceXItemClicked()}">
+
+
+    <TextView
+        android:id="@+id/spacex_mission_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:layout_marginStart="10dp"
+        android:text="@{viewModel.missionName}"
+        tools:text="Mission Name"/>
+
+    <TextView
+        android:id="@+id/spacex_mission_timestamp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:layout_marginEnd="10dp"
+        android:text="@{viewModel.missionTimestamp}"
+        tools:text="02-Aug-2019 09:26 AM"/>
+
+</androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

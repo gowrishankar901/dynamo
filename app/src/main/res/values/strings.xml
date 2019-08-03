@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">Dynamo SpaceX</string>
+    <string name="spacex_past_launch_list">SPACEX PAST LAUNCHES</string>
 </resources>
