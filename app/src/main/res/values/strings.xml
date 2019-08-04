@@ -1,4 +1,8 @@
 <resources>
     <string name="app_name">Dynamo SpaceX</string>
     <string name="spacex_past_launch_list">SPACEX PAST LAUNCHES</string>
+    <string name="launch_details_label">LAUNCH DETAILS : </string>
+    <string name="rocket_name_label">ROCKET NAME :\ </string>
+    <string name="video_label">video:</string>
+    <string name="failed_video">Failed to load video</string>
 </resources>

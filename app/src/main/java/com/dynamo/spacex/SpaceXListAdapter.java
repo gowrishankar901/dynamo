@@ -7,6 +7,8 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.dynamo.spacex.databinding.ItemSpacexViewHolderBinding;
+import com.dynamo.spacex.viewmodels.SpaceXListViewModel;
+import com.dynamo.spacex.viewmodels.SpaceXViewModel;
 
 import java.util.List;
 
@@ -37,10 +39,5 @@ public class SpaceXListAdapter extends RecyclerView.Adapter<SpaceXItemViewHolder
     @Override
     public int getItemCount() {
         return (spaceXViewModels != null ? spaceXViewModels.size() : 0);
-    }
-
-    public void setSpaceXViewModels(List<SpaceXViewModel> spaceXViewModels) {
-        this.spaceXViewModels = spaceXViewModels;
-        notifyDataSetChanged();
     }
 }

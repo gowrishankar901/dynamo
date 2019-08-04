@@ -3,6 +3,8 @@ package com.dynamo.spacex;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.dynamo.spacex.databinding.ItemSpacexViewHolderBinding;
+import com.dynamo.spacex.viewmodels.SpaceXListViewModel;
+import com.dynamo.spacex.viewmodels.SpaceXViewModel;
 
 public class SpaceXItemViewHolder extends RecyclerView.ViewHolder {
 

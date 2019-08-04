@@ -6,7 +6,9 @@
     <data>
         <variable
             name = "viewModel"
-            type = "com.dynamo.spacex.SpaceXListViewModel"/>
+            type = "com.dynamo.spacex.viewmodels.SpaceXListViewModel"/>
+
+        <import type="android.view.View"/>
     </data>
 
 <androidx.constraintlayout.widget.ConstraintLayout
@@ -32,10 +34,22 @@
         android:layout_marginTop="15dp"
         android:layout_width="0dp"
         android:layout_height="0dp"
+        app:adapter="@{viewModel.adapter}"
+        android:overScrollMode="ifContentScrolls"
         app:layout_constraintTop_toBottomOf="@id/page_title"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"/>
+
+    <ProgressBar
+        android:id="@+id/horizontal_progressbar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:indeterminate="true"
+        android:indeterminateTint="@color/colorPrimary"
+        android:visibility="@{viewModel.shouldShowProgressBar ? View.VISIBLE : View.GONE}"
+        style="@style/Widget.AppCompat.ProgressBar.Horizontal"
+        app:layout_constraintBottom_toBottomOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

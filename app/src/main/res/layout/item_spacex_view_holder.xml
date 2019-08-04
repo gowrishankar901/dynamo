@@ -4,40 +4,52 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <data>
+
         <variable
-            name = "viewModel"
-            type = "com.dynamo.spacex.SpaceXViewModel"/>
+            name="viewModel"
+            type="com.dynamo.spacex.viewmodels.SpaceXViewModel" />
+
         <variable
-            name = "listViewModel"
-            type = "com.dynamo.spacex.SpaceXListViewModel"/>
+            name="listViewModel"
+            type="com.dynamo.spacex.viewmodels.SpaceXListViewModel" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
-    android:orientation="vertical"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-        android:onClick="@{() -> listViewModel.onSpaceXItemClicked()}">
-
-
-    <TextView
-        android:id="@+id/spacex_mission_name"
-        android:layout_width="wrap_content"
+        android:id="@+id/item_spacex_past_launch"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        android:layout_marginStart="10dp"
-        android:text="@{viewModel.missionName}"
-        tools:text="Mission Name"/>
+        android:onClick="@{() -> listViewModel.onSpaceXItemClicked(viewModel)}"
+        android:orientation="vertical">
 
-    <TextView
-        android:id="@+id/spacex_mission_timestamp"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        android:layout_marginEnd="10dp"
-        android:text="@{viewModel.missionTimestamp}"
-        tools:text="02-Aug-2019 09:26 AM"/>
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+        <TextView
+            android:id="@+id/spacex_mission_name"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="@{viewModel.missionName}"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="@+id/guideline_vertical"
+            app:layout_constraintTop_toTopOf="parent"
+            android:padding="20dp"
+            tools:text="Mission Name" />
+
+        <TextView
+            android:id="@+id/spacex_mission_timestamp"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="@{viewModel.missionTimestamp}"
+            app:layout_constraintStart_toEndOf="@+id/guideline_vertical"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            android:padding="20dp"
+            tools:text="02-Aug-2019 09:26 AM" />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/guideline_vertical"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintGuide_percent="0.4"
+            android:orientation="vertical"/>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>
