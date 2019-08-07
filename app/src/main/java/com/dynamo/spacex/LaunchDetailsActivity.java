@@ -41,8 +41,12 @@ public class LaunchDetailsActivity extends AppCompatActivity {
     private void initializeYoutubeVideo(YouTubePlayerFragment fragment, String youtubeVideoId) {
         fragment.initialize(YOUTUBE_API_KEY, new YouTubePlayer.OnInitializedListener() {
             @Override
-            public void onInitializationSuccess(YouTubePlayer.Provider provider, YouTubePlayer youTubePlayer, boolean b) {
-                youTubePlayer.cueVideo(youtubeVideoId);
+            public void onInitializationSuccess(YouTubePlayer.Provider provider, YouTubePlayer youTubePlayer, boolean wasRestored) {
+                youTubePlayer.setFullscreenControlFlags(YouTubePlayer.FULLSCREEN_FLAG_CUSTOM_LAYOUT);
+
+                if (!wasRestored) {
+                    youTubePlayer.cueVideo(youtubeVideoId);
+                }
             }
 
             @Override

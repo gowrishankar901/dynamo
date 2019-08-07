@@ -25,10 +25,13 @@ public class LaunchDetailsViewModel extends ViewModel {
     }
 
     private void getValuesFromUseCase() {
-        LaunchDetailsUseCase useCase = transientDataProvider.getUseCase(LaunchDetailsUseCase.class);
-        launchDetailsTitle.set(useCase.getTitle());
-        rocketName.set(useCase.getRocketName());
-        launchDetailsText.set(useCase.getLaunchDetailsText());
-        youtubeVideoId.setValue(useCase.getYoutubeVideoId());
+        if (transientDataProvider.containsUseCase(LaunchDetailsUseCase.class)) {
+            LaunchDetailsUseCase useCase = transientDataProvider.getUseCase(LaunchDetailsUseCase.class);
+            launchDetailsTitle.set(useCase.getTitle());
+            rocketName.set(useCase.getRocketName());
+            launchDetailsText.set(useCase.getLaunchDetailsText());
+            youtubeVideoId.setValue(useCase.getYoutubeVideoId());
+
+        }
     }
 }

@@ -2,7 +2,9 @@ package com.dynamo.spacex.viewmodels;
 
 import androidx.arch.core.executor.testing.InstantTaskExecutorRule;
 
+import com.dynamo.spacex.model.Links;
 import com.dynamo.spacex.model.PastLaunch;
+import com.dynamo.spacex.model.Rocket;
 import com.dynamo.spacex.serviceprovider.SpaceXProvider;
 import com.dynamo.spacex.shared.LaunchDetailsUseCase;
 import com.dynamo.spacex.shared.TransientDataProvider;
@@ -15,6 +17,9 @@ import org.mockito.Answers;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
 import org.mockito.runners.MockitoJUnitRunner;
+import org.powermock.api.mockito.PowerMockito;
+import org.powermock.core.classloader.annotations.PrepareForTest;
+import org.powermock.modules.junit4.PowerMockRunner;
 
 import java.util.Collections;
 
@@ -29,7 +34,8 @@ import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
-@RunWith(MockitoJUnitRunner.class)
+@RunWith(PowerMockRunner.class)
+@PrepareForTest({PastLaunch.class, Rocket.class, Links.class})
 public class SpaceXListViewModelTest {
 
     @Rule
@@ -41,15 +47,17 @@ public class SpaceXListViewModelTest {
     @Mock
     private TransientDataProvider transientDataProvider;
 
-    @Mock(answer = Answers.RETURNS_DEEP_STUBS)
-    PastLaunch pastLaunch;
-
+    private PastLaunch pastLaunch = PowerMockito.mock(PastLaunch.class);
+    private Rocket rocket = PowerMockito.mock(Rocket.class);
+    private Links links = PowerMockito.mock(Links.class);
     private SpaceXListViewModel subject;
 
     @Before
     public void setup() {
         MockitoAnnotations.initMocks(this);
         when(spaceXProvider.getPastLaunchData(anyInt(), anyInt())).thenReturn(Single.error(new Throwable()));
+        when(pastLaunch.getRocket()).thenReturn(rocket);
+        when(pastLaunch.getLinks()).thenReturn(links);
 
         subject = new SpaceXListViewModel(spaceXProvider, transientDataProvider);
     }
@@ -65,7 +73,7 @@ public class SpaceXListViewModelTest {
 
     @Test
     public void fetchSpaceXPastLaunchList_callsSpaceXService() {
-        verify(spaceXProvider).getPastLaunchData(0, 10);
+        verify(spaceXProvider).getPastLaunchData(0, 15);
     }
 
     @Test
@@ -86,7 +94,7 @@ public class SpaceXListViewModelTest {
     }
 
     @Test
-    public void onSpaceXItemClicked_savesLaunchDetailsUseCase() {
+    public void onSpaceXItemClicked_pastLaunchDetailsAreValid_savesLaunchDetailsUseCaseWithCorrectValues() {
         when(pastLaunch.getMissionName()).thenReturn("missionName");
         when(pastLaunch.getRocket().getRocketName()).thenReturn("rocketName");
         when(pastLaunch.getDetails()).thenReturn("details");
@@ -97,6 +105,20 @@ public class SpaceXListViewModelTest {
         subject.onSpaceXItemClicked(spaceXViewModel);
 
         verify(transientDataProvider).saveUseCase(new LaunchDetailsUseCase("missionName", "rocketName", "details", "videoId"));
+    }
+
+    @Test
+    public void onSpaceXItemClicked_pastLaunchDetailsAreInvalid_savesLaunchDetailsUseCaseWithEmptyString() {
+        when(pastLaunch.getMissionName()).thenReturn(null);
+        when(pastLaunch.getRocket().getRocketName()).thenReturn("rocketName");
+        when(pastLaunch.getDetails()).thenReturn(null);
+        when(pastLaunch.getLinks().getVideoId()).thenReturn("videoId");
+        SpaceXViewModel spaceXViewModel = mock(SpaceXViewModel.class);
+        when(spaceXViewModel.getPastLaunch()).thenReturn(pastLaunch);
+
+        subject.onSpaceXItemClicked(spaceXViewModel);
+
+        verify(transientDataProvider).saveUseCase(new LaunchDetailsUseCase("", "rocketName", "", "videoId"));
     }
 
     @Test

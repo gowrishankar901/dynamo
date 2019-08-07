@@ -117,10 +117,10 @@ public class SpaceXListViewModel extends ViewModel {
     }
 
     private void saveLaunchDetailsUseCase(PastLaunch pastLaunch) {
-        String missionName = pastLaunch.getMissionName();
-        String rocketName = pastLaunch.getRocket().getRocketName();
-        String launchDetailsText = pastLaunch.getDetails();
-        String youtubeVideoId = pastLaunch.getLinks().getVideoId();
+        String missionName = pastLaunch.getMissionName() != null ? pastLaunch.getMissionName() : "";
+        String rocketName = pastLaunch.getRocket().getRocketName() != null ? pastLaunch.getRocket().getRocketName() : "";
+        String launchDetailsText = pastLaunch.getDetails() != null ? pastLaunch.getDetails() : "";
+        String youtubeVideoId = pastLaunch.getLinks().getVideoId() != null ? pastLaunch.getLinks().getVideoId() : "";
         transientDataProvider.saveUseCase(new LaunchDetailsUseCase(missionName, rocketName, launchDetailsText, youtubeVideoId));
     }
 }

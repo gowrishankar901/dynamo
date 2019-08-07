@@ -23,4 +23,8 @@ public class TransientDataProvider {
         final UseCase removedUseCase = transientData.remove(useCaseClass);
         return useCaseClass.cast(removedUseCase);
     }
+
+    public  <T extends UseCase> boolean containsUseCase(Class<T> useCaseClass) {
+        return transientData.containsKey(useCaseClass);
+    }
 }
