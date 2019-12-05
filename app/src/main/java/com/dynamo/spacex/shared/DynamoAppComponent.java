@@ -6,6 +6,8 @@ import javax.inject.Singleton;
 
 import dagger.BindsInstance;
 import dagger.Component;
+import dagger.android.AndroidInjection;
+import dagger.android.AndroidInjector;
 import dagger.android.support.AndroidSupportInjectionModule;
 
 @Component(modules = {
@@ -14,7 +16,7 @@ import dagger.android.support.AndroidSupportInjectionModule;
         AndroidSupportInjectionModule.class
 })
 @Singleton
-public interface DynamoAppComponent {
+public interface DynamoAppComponent extends AndroidInjector<DynamoApplication> {
 
     @Component.Builder
     interface Builder {
@@ -22,6 +24,4 @@ public interface DynamoAppComponent {
         Builder application(Application application);
         DynamoAppComponent build();
     }
-
-    void inject(DynamoApplication dynamoApplication);
 }

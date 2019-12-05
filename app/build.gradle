@@ -38,12 +38,10 @@ dependencies {
     implementation 'android.arch.lifecycle:extensions:1.1.1'
     implementation 'androidx.recyclerview:recyclerview:1.0.0'
     testImplementation 'junit:junit:4.12'
+    testImplementation 'io.mockk:mockk:1.9'
     testImplementation 'androidx.test:core:1.2.0'
-    testImplementation 'org.mockito:mockito-core:2.19.0'
     testImplementation 'android.arch.core:core-testing:1.1.1'
     testImplementation 'org.assertj:assertj-core:1.7.1'
-    testImplementation 'org.powermock:powermock-api-mockito2:2.0.0-beta.5'
-    testImplementation 'org.powermock:powermock-module-junit4:2.0.0-beta.5'
     androidTestImplementation 'androidx.test:runner:1.2.0'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.2.0'
     androidTestImplementation 'androidx.test.ext:junit:1.1.1'
@@ -58,13 +56,13 @@ dependencies {
     //Youtube
     implementation files('libs/youtubeandroidplayerapi.jar')
     //Dagger2
-    implementation 'com.google.dagger:dagger-android:2.17'
-    implementation 'com.google.dagger:dagger-android-support:2.17'
-    annotationProcessor 'com.google.dagger:dagger-android-processor:2.17'
-    annotationProcessor 'com.google.dagger:dagger-compiler:2.17'
+    implementation 'com.google.dagger:dagger-android:2.21'
+    implementation 'com.google.dagger:dagger-android-support:2.21'
+    annotationProcessor 'com.google.dagger:dagger-android-processor:2.21'
+    annotationProcessor 'com.google.dagger:dagger-compiler:2.21'
     //kotlin
-    implementation 'androidx.core:core-ktx:1.0.2'
-    implementation 'androidx.lifecycle:lifecycle-viewmodel-ktx:2.0.0'
+    implementation 'androidx.core:core-ktx:1.1.0'
+    implementation 'androidx.lifecycle:lifecycle-viewmodel-ktx:2.1.0'
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
 }
 repositories {
