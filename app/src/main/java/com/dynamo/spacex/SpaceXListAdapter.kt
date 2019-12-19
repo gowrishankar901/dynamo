@@ -6,7 +6,6 @@ import androidx.recyclerview.widget.RecyclerView
 import com.dynamo.spacex.databinding.ItemSpacexViewHolderBinding
 import com.dynamo.spacex.viewmodels.SpaceXListViewModel
 import com.dynamo.spacex.viewmodels.SpaceXViewModel
-import javax.inject.Inject
 
 class SpaceXListAdapter (private val spaceXListViewModel: SpaceXListViewModel): RecyclerView.Adapter<SpaceXItemViewHolder>() {
 

@@ -10,15 +10,13 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.dynamo.spacex.databinding.ActivityMainBinding
 import com.dynamo.spacex.viewmodels.SpaceXListViewModel
-import dagger.android.AndroidInjection
-import javax.inject.Inject
+import org.koin.android.viewmodel.ext.android.viewModel
 
 class SpaceXListActivity : AppCompatActivity() {
-    @Inject
-    lateinit var spaceXListViewModel: SpaceXListViewModel
+
+    private val spaceXListViewModel: SpaceXListViewModel by viewModel()
 
     override fun onCreate(savedInstanceState: Bundle?) {
-        AndroidInjection.inject(this)
         super.onCreate(savedInstanceState)
         val binding = DataBindingUtil.setContentView<ActivityMainBinding>(this, R.layout.activity_main)
         binding.viewModel = spaceXListViewModel

@@ -5,10 +5,8 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.dynamo.spacex.shared.LaunchDetailsUseCase
 import com.dynamo.spacex.shared.TransientDataProvider
-import com.dynamo.spacex.shared.UseCase
-import javax.inject.Inject
 
-class LaunchDetailsViewModel @Inject constructor(
+class LaunchDetailsViewModel (
         private val transientDataProvider: TransientDataProvider
 ): ViewModel() {
     val launchDetailsTitle: ObservableField<String> = ObservableField()

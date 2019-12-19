@@ -11,16 +11,11 @@ import com.dynamo.spacex.shared.LaunchDetailsUseCase
 import com.dynamo.spacex.shared.TransientDataProvider
 import io.reactivex.Observable
 import io.reactivex.Single
-import io.reactivex.SingleTransformer
-import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.CompositeDisposable
-import io.reactivex.schedulers.Schedulers
 import java.text.SimpleDateFormat
 import java.util.*
-import javax.inject.Inject
-import kotlin.collections.ArrayList
 
-class SpaceXListViewModel @Inject constructor(
+class SpaceXListViewModel (
         private val spaceXProvider: SpaceXProvider,
         private val transientDataProvider: TransientDataProvider
 ): ViewModel() {

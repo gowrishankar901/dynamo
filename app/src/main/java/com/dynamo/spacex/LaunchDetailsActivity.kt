@@ -1,7 +1,6 @@
 package com.dynamo.spacex
 
 import android.os.Bundle
-import android.os.PersistableBundle
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
@@ -11,20 +10,17 @@ import com.dynamo.spacex.viewmodels.LaunchDetailsViewModel
 import com.google.android.youtube.player.YouTubeInitializationResult
 import com.google.android.youtube.player.YouTubePlayer
 import com.google.android.youtube.player.YouTubePlayerFragment
-import dagger.android.AndroidInjection
-import javax.inject.Inject
+import org.koin.android.viewmodel.ext.android.viewModel
 
 class LaunchDetailsActivity: AppCompatActivity() {
 
-    @Inject
-    lateinit var launchDetailsViewModel: LaunchDetailsViewModel
+   private val launchDetailsViewModel: LaunchDetailsViewModel by viewModel()
 
     companion object {
         private const val YOUTUBE_API_KEY: String = "AIzaSyBM7uxvSRtCYLCEdVAZ5KNRYxMTg0Lq3d8"
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
-        AndroidInjection.inject(this)
         super.onCreate(savedInstanceState)
         val binding = DataBindingUtil.setContentView<ActivityLaunchDetailsBinding>(this, R.layout.activity_launch_details)
         binding.viewModel = launchDetailsViewModel

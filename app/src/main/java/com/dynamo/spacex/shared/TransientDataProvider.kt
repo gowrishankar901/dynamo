@@ -1,11 +1,8 @@
 package com.dynamo.spacex.shared
 
 import java.util.concurrent.ConcurrentHashMap
-import javax.inject.Inject
-import javax.inject.Singleton
 
-@Singleton
-class TransientDataProvider @Inject constructor() {
+class TransientDataProvider {
     private val transientData = ConcurrentHashMap<Class<out UseCase>, UseCase>()
 
     fun saveUseCase(useCase: UseCase) {
